@@ -47,9 +47,9 @@ keep the hierarchy in place.
 		this feature. An example remote include is contained in the example.conf.
 		
 		The rehash bot will work out of the box, but you may wish to edit the
-		values contained in "rehash.inc.php". Please note that changing the oper
-		username and password in this file will require you to change the 
-		"rehashbot" user in the control panel as well.
+		values contained in "pages/rehash.inc.php". Please note that changing 
+		the oper username and password in this file will require you to change 
+		the "rehashbot" user in the control panel as well.
 
 	- Crontab
 		For *nix/*BSD users, something like this should work:
