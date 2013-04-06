@@ -1,0 +1,68 @@
+Requirements:
+
+Volturnus requires PHP5 and MySQL to be installed on your web server in order to
+work. If you plan to use the rehashing bot you will also need to have php_sockets
+enabled so that the bot can connect to the network. If you decide to use the Perl
+script you will need to have the Digest::MD5 Perl module installed. You should 
+have a cron daemon installed in order to run the script at any given interval.
+
+Installation:
+
+Extract the files locally or on your web server. There will be many folders --
+you only need to upload the "php" folder. Move the folder or rename it, just 
+keep the hierarchy in place.
+
+ - Web
+	To install the web-based control panel, import "config.sql" into your MySQL
+	server. Edit "config.inc.php" in the "php" directory to include your MySQL
+	details.
+	
+	NOTE: The default username and password the control panel is "config". Upon
+	logging in you should change the password IMMEDIATELY. Create a new user, 
+	give it full permissions, log in as that user, and delete the "config" user.
+	Failure to do so may result in a compromise of your network!
+	
+ - IRCd
+	Volturnus allows you to manage configuration in two ways. Depending on how
+	you wish to use the control panel, you may need to install additional 
+	software so that your IRCd works. Users who intend to use the rehashing bot
+	should make sure that their IRCd is set up with remote includes. Users who
+	wish to use the crontab should make sure that cron is set up and that the
+	Digest::MD5 Perl module is installed.
+
+	Use the config found in the "ircd" folder to configure your IRCd. The config
+	is considerably smaller than the normal config file but will still allow your
+	IRCd to boot regardless.
+	
+	NOTE: The config file shipped with Volturnus has been modified and should
+	not be supported by the UnrealIRCd project. For configuration issues, please
+	consult the UnrealIRCd documentation. If you feel there is an error with
+	the config that we have included please let us know. DO NOT CONTACT THE
+	UNREALIRCD PROJECT FOR HELP.
+	
+	- Rehash Bot using Remote Includes
+		In order to use the rehash bot, you MUST make sure that your IRCd is set
+		up to use remote includes. See the UnrealIRCd documentation for more
+		information. You will NOT need the cron/perl script if you decide to use
+		this feature. An example remote include is contained in the example.conf.
+		
+		The rehash bot will work out of the box, but you may wish to edit the
+		values contained in "rehash.inc.php". Please note that changing the oper
+		username and password in this file will require you to change the 
+		"rehashbot" user in the control panel as well.
+
+	- Crontab
+		For *nix/*BSD users, something like this should work:
+		0,15,30,45 * * * * /home/username/Unreal3.2/config.pl >> /dev/null 2>&1
+		
+		This will check for updates every 15 minutes. The Perl script used to
+		check for updates should be moved from the "ircd" folder into your
+		Unreal32 folder. If you've installed your IRCd into another folder, 
+		place the perl script in the same directory that contains the IRCd
+		PID file.
+		
+		Windows Users:
+		Volturnus has not been tested on Windows and it is unlikely that we will
+		make an effort to support this platform. If you wish to attempt to use
+		Volturnus anyway, you will need to install Cron for Windows or use the 
+		Windows Task Scheduler/at command to make this work properly.
