@@ -1,0 +1,4 @@
+<Files ~ "\.inc\.php$">
+        Order allow,deny
+        Deny from all
+</Files> 
