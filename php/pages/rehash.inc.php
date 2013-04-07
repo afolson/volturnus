@@ -9,11 +9,11 @@ $irc['name'] = "RehashBot";
 $irc['operuser'] = "rehashbot";
 $irc['operpass'] = "rehashbot";
 
-$irc['server'] = "208.68.18.179";
+$irc['server'] = "127.0.0.1";
 $irc['port'] = "6667";
 $irc['pass'] = "";
 
-$irc['identify'] = "IDENTIFY VO617kbjqJduHYq";
+$irc['identify'] = "IDENTIFY SuperSecurePasswordInPlainText";
 
 $page['title'] = "Rehashing Servers";
 
