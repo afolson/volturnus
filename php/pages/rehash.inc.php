@@ -2,100 +2,119 @@
 error_reporting(0);
 /* $Id:$ */
 
-$irc['nick'] = "RehashBot";
-$irc['user'] = "RehashBot";
-$irc['name'] = "RehashBot";
+// IRC settings.
+$irc = Array(
+   // IRC nickname, username and real name.
+   "nick"=> "RehashBot",
+   "user"=> "RehashBot",
+   "name"=> "RehashBot",
 
-$irc['operuser'] = "rehashbot";
-$irc['operpass'] = "rehashbot";
+   // No need for multiple vars, use the full oper command.
+   // Example: "oper AwesomeOperName ohlookapassword"
+   "oper"=> "oper rehashbot rehashbot",
 
-$irc['server'] = "127.0.0.1";
-$irc['port'] = "6667";
-$irc['pass'] = "";
+   // Support SSL. tcp://irc.server.tld:6667 or ssl://irc.server.tld:6697 or tcp://[::1]:6667
+   "server" => "tcp://127.0.0.1:6667",
 
-$irc['identify'] = "IDENTIFY SuperSecurePasswordInPlainText";
+   // A password required to connect to IRC. (usually optional)
+   "pass" => false,
 
-$page['title'] = "Rehashing Servers";
+   // NickServ auth. (optional)
+   // Example: "IDENTIFY SuperSecurePasswordInPlainText"
+   "identify" => false,
+
+   // An IPv4 or IPv6 address to bind to. (optional)
+   "bindip" => false,
+
+   // Placeholder for stream_context_create.
+   "context" => Array(),
+);
 
 
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-socket_connect($socket, $irc['server'], $irc['port']);
+/*
+ --- SHOULD HAVE NO NEED TO EDIT BELOW THIS LINE UNLESS YOU'RE AN ADVANCED USER ---
+*/
+$donerehash = false; // An "afolson" oddness.
+$page['title'] = "Rehashing Servers"; // Another "afolson"...
 
-$irc['mynick'] = $irc['nick'];
-$connected = false;
-$donerehash = false;
+// Create an array for bindip, if required.
+if ((isset($irc["bindip"]) && !empty($irc["bindip"]))) {
+   // Support for IPv4 and IPv6 addresses.
+   $irc["context"] = Array('socket'=>array('bindto'=>(strpos($irc["bindip"],':')?'['.$irc["bindip"].']':$irc["bindip"]).':0'));
+};
 
-if (!$socket) {
-    $page['content'] = "$errstr ($errno)\n";
-} else {
-	while (1)
-	{
-		$line = socket_read($socket, 100000);
-		if (strlen($line) == 0)
-		{
-			break;
-		}
-		$line = str_replace("\r", "\n", $line);
-		$line = str_replace("\n\n", "\n", $line);
-		$lines = explode("\n", $line);
-		foreach ($lines as $line)
-		{
+// Create the context from the opts array.
+$ctxt = stream_context_create($irc["context"]);
+// Connect to IRC!
+if ($con = stream_socket_client($irc["server"],$errno,$errstr,5,STREAM_CLIENT_CONNECT,$ctxt)) {
+   // Send PASS if set.
+   if ((isset($irc["pass"]) && !empty($irc["pass"]))) {
+      fwrite($con, "PASS ".$irc["pass"]."\r\n");
+   };
 
-			preg_match("/(?:[:@]([^\s]+) )?([^\s]+)(?: (?:([^:\s][^\s]*) ?)*)(?::(.*))?/i", str_replace("\r\n", "", $line), $matches);
-			$msg = $matches;
-		
-			switch (strtolower($msg[2])) {
-				case "ping":
-					socket_write($socket, "PONG :".$msg[4]."\r\n");
-					break;
-				case "001":
-					socket_write($socket, $irc['identify']."\r\n");
-					socket_write($socket, "OPER ".$irc['operuser']." ".$irc['operpass']."\r\n");
-					break;
-				case "005":
-					do_rehash($socket);
-					break;
-				case "433":
-					$irc['mynick'] = $irc['nick'].rand(0,9).rand(0,9).rand(0,9);
-					socket_write($socket, "NICK ".$irc['mynick']."\r\n");
-					break;
-			}
-		
-			if ( !$connected ) {
-				if ($irc['pass'] <> "") {
-					socket_write($socket, "PASS ".$irc['pass']."\r\n");
-				}
-				socket_write($socket, "NICK ".$irc['mynick']."\r\n");
-				socket_write($socket, "USER ".$irc['user']." 0 * :".$irc['name']."\r\n");
-				$connected = true;
-			}
-		}
-	}
-}
+   // Send all the required info for connection.
+   fwrite($con,"NICK ".$irc["nick"]."\r\n");
+   fwrite($con,"USER ".$irc["nick"]." 0 * :".$irc["nick"]."\r\n");
 
-function do_rehash($socket) {
+   // Keep looping until FEOF is hit.
+   while (!feof($con)) {
+         // Read from IRC, at 512 bytes.
+         if ($raw = trim(fgets($con,512))) {
+            // Prevent the "need" for regex.
+            $line = explode(" ",$raw);
+
+            // Reply to the initial PING from some servers.
+            if ($line[0] == "PING") {
+               fwrite($con,"PONG ".$line[1]."\r\n");
+               continue;
+            };
+
+            // Only take action for some server responses.
+            switch (strtolower($line[1])) {
+                case "001":
+                     if ((isset($irc["identify"]) && !empty($irc["identify"]))) {
+                        fwrite($con, $irc["identify"]."\r\n");
+                     };
+                     fwrite($con, $irc["oper"]."\r\n");
+                     break;
+                case "005":
+                     do_rehash($con);
+                     break;
+                case "433":
+                     $irc['nick'] = $irc['nick'].rand(0,9).rand(0,9).rand(0,9);
+                     fwrite($con, "NICK ".$irc['nick']."\r\n");
+                     break;
+
+            };
+         };
+   };
+ } else {
+    $page['content'] = "$errstr ($errno)\n"; // I don't know what this is for.. ask "afolson"...
+};
+
+
+// Blame "afolson" for this "do_rehash" mess.
+function do_rehash ($con) {
 	global $page;
 	global $sql_conn;
 	global $donerehash;
-	
 	if (!$donerehash) {
 		$donerehash = true;
 		$sql = "SELECT * FROM servers";
 		$result = mysql_query($sql, $sql_conn) or die(mysql_error());
-		
 		if (mysql_num_rows($result)) {
 			$page['content'] .= "Rehashing:<br />\n";
 			/* Rehash local server */
-			socket_write($socket, "REHASH\r\n");
+			fwrite($con, "REHASH\r\n");
 			while ($row = mysql_fetch_array($result)) {
 				$page['content'] .= $row['name'] . "<br />\n";
 				/* Rehash any others remotely */
-				socket_write($socket, "REHASH ".$row['name']."\r\n");
+				fwrite($con, "REHASH ".$row['name']."\r\n");
 			}
 		} else {
 			$page['content'] .= "No servers listed to rehash";
 		}
-		socket_write($socket, "QUIT :Finished!\r\n");
+		fwrite($con, "QUIT :Finished!\r\n");
 	}
-}
+};
 ?>
