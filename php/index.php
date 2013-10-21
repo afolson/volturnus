@@ -1,6 +1,5 @@
 <?php
 error_reporting(0);
-/* $Id:$ */
 
 /* Start the session! */
 session_start();
