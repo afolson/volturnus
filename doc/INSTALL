@@ -41,10 +41,11 @@ keep the hierarchy in place.
 	UNREALIRCD PROJECT FOR HELP.
 	
 	- Rehash Bot using Remote Includes
-		In order to use the rehash bot, you MUST make sure that your IRCd is set
-		up to use remote includes. See the UnrealIRCd documentation for more
-		information. You will NOT need the cron/perl script if you decide to use
-		this feature. An example remote include is contained in the example.conf.
+		In order to use the rehash bot, you MUST make sure that your IRCd is 
+		set up to use remote includes. See the UnrealIRCd documentation for 
+		more information. You will NOT need the cron/perl script if you decide 
+		to use this feature. An example remote include is contained in the 
+		example.conf file.
 		
 		The rehash bot will work out of the box, but you may wish to edit the
 		values contained in "pages/rehash.inc.php". Please note that changing 
@@ -65,4 +66,5 @@ keep the hierarchy in place.
 		Volturnus has not been tested on Windows and it is unlikely that we will
 		make an effort to support this platform. If you wish to attempt to use
 		Volturnus anyway, you will need to install Cron for Windows or use the 
-		Windows Task Scheduler/at command to make this work properly.
+		Windows Task Scheduler/at command to make this work properly. If you're
+		interested in helping us with Windows support please contact us.
