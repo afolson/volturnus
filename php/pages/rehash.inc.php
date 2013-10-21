@@ -1,6 +1,5 @@
 <?php
 error_reporting(0);
-/* $Id:$ */
 
 // IRC settings.
 $irc = Array(
