@@ -1,6 +1,6 @@
 <?php
-$sqldetails['server'] = "";
-$sqldetails['user'] = "";
-$sqldetails['password'] = "";
-$sqldetails['database'] = "";
+$sqldetails['server'] = "localhost";
+$sqldetails['user'] = "volturnus";
+$sqldetails['password'] = "volturnuspassword";
+$sqldetails['database'] = "volturnus";
 ?>
