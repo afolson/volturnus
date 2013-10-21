@@ -1,7 +1,5 @@
 <?php
 
-/* $Id:$ */
-
 /* set messages*/
 $auth_error_text['title'] = "Error";
 $auth_error_text['user'] = "Invalid User";
