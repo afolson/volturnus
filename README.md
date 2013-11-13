@@ -1,4 +1,4 @@
-# Volturnus (v 0.1)
+# Volturnus (v 2.0)
 
 Volturnus is a web-based IRCd configuration management panel.
 
