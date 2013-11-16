@@ -9,14 +9,17 @@ $twig = new Twig_Environment($loader, array(
 //    'cache' => 'cache',
 ));
 
-//$twig->addGlobal("session", $_SESSION);
 
 $pageTitle = "Home";
 $userName = $_SESSION['username'];
 $operID = $_SESSION['id'];
+$operRole = $_SESSION['admin'];
+
+//print_r($_SESSION);
 echo $twig->render('home.html', array('pageTitle' => $pageTitle,
 										'userName' => $userName,
-										'operID' => $operID
+										'operID' => $operID,
+										'operRole' => $operRole
 									));
 ?>
 
