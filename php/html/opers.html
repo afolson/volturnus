@@ -10,25 +10,21 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>#</th>
-										<th>First Name</th>
-										<th>Last Name</th>
+										<th>ID</th>
 										<th>Username</th>
+										<th>Flags</th>
+										<th>Options</th>
 									</tr>
 								</thead>
 								<tbody>
+{% for oper in operList %}
 									<tr>
-										<td>1</td>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
+										<td>{{ oper.id }}</td>
+										<td>{{ oper.username }}</td>
+										<td>{{ oper.flags }}</td>
+										<td><button type="button" class="btn btn-success">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
 									</tr>
-									<tr>
-										<td>2</td>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>@fat</td>
-									</tr>
+{% endfor %}
 								</tbody>
 							</table>
 						</div>
