@@ -9,17 +9,19 @@ $twig = new Twig_Environment($loader, array(
 //    'cache' => 'cache',
 ));
 
+include('inc/Oper.php');
 
 $pageTitle = "Home";
 $userName = $_SESSION['username'];
 $operID = $_SESSION['id'];
 $operRole = $_SESSION['admin'];
+$operList = Oper::listOpers();
 
-//print_r($_SESSION);
 echo $twig->render('opers.html', array('pageTitle' => $pageTitle,
 										'userName' => $userName,
 										'operID' => $operID,
-										'operRole' => $operRole
+										'operRole' => $operRole,
+										'operList' => $operList
 									));
 ?>
 
