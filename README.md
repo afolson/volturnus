@@ -11,7 +11,7 @@ Volturnus is a web-based IRCd configuration management panel.
 
 ## Installation
 
-Please see the INSTALL file located in "docs/".
+Please see the INSTALL file located in "doc/".
 
 ## Supported IRCds
 
