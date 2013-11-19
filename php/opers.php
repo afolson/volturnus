@@ -11,11 +11,18 @@ $twig = new Twig_Environment($loader, array(
 
 include('inc/Oper.php');
 
-$pageTitle = "Home";
+$pageTitle = "Opers";
+
+
 $userName = $_SESSION['username'];
 $operID = $_SESSION['id'];
 $operRole = $_SESSION['admin'];
-$operList = Oper::listOpers();
+
+
+$operList = new Oper();
+$operList = $operList->listOpers();
+
+
 
 echo $twig->render('opers.html', array('pageTitle' => $pageTitle,
 										'userName' => $userName,
