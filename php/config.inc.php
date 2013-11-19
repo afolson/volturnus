@@ -1,6 +1,6 @@
 <?php
-$sqldetails['server'] = "localhost";
-$sqldetails['user'] = "volturnus";
-$sqldetails['password'] = "volturnuspassword";
-$sqldetails['database'] = "volturnus";
+define( 'DB_USER', 'volturnus' );
+define( 'DB_PASSWORD', 'volturnuspassword' );
+define( 'DB_HOST', 'localhost' );
+define( 'DB_NAME', 'volturnus' );
 ?>
