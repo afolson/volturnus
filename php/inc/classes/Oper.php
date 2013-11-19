@@ -4,7 +4,7 @@ require_once('Database.php');
 
 class Oper {
 	public function __construct() {
-		$db = new Database();
+		$this->db = new Database();
 	}
 
 	public function listOpers() {
