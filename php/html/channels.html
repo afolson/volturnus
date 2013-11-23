@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+			<div class="container">
+				<div class="row row-offcanvas row-offcanvas-right">
+					<div class="col-xs-12 col-sm-9">
+						<p class="pull-right visible-xs">
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+						</p>
+						<div class="row">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Mask</th>
+										<th>Type</th>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tbody>
+{% for channel in channelList %}
+									<tr>
+										<td>{{ channel.id }}</td>
+										<td>{{ channel.mask }}</td>
+										<td>{{ channel.type }}</td>
+										<td><button type="button" class="btn btn-success">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
+									</tr>
+{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+{% include 'sidebar.html' %}
+				</div>
+			</div>
+{% include 'footer.html' %}
