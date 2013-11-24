@@ -1,0 +1,39 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+			<div class="container">
+				<div class="row row-offcanvas row-offcanvas-right">
+					<div class="col-xs-12 col-sm-9">
+						<p class="pull-right visible-xs">
+							<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+						</p>
+						<div class="row">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Type</th>
+										<th>Filename</th>
+										<th>Reason</th>
+										<th>Soft</th>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tbody>
+{% for dcc in dccList %}
+									<tr>
+										<td>{{ dcc.id }}</td>
+										<td>{{ dcc.type }}</td>
+										<td>{{ dcc.filename }}</td>
+										<td>{{ dcc.reason }}</td>
+										<td>{{ dcc.soft }}</td>
+										<td><button type="button" class="btn btn-success">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
+									</tr>
+{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+{% include 'sidebar.html' %}
+				</div>
+			</div>
+{% include 'footer.html' %}
