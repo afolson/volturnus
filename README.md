@@ -19,11 +19,6 @@ Currently supported IRCds:
 
 * UnrealIRCd 3.2
 
-On the roadmap:
-
-* InspIRCd
-* Charybdis
-
 Don't see your IRCd? Feel free to open a feature request.
 
 ## Requesting Help
