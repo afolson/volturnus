@@ -2,10 +2,7 @@
 {% include 'navbar.html' %}
 			<div class="container">
 				<div class="row row-offcanvas row-offcanvas-right">
-					<div class="col-xs-12 col-sm-9">
-						<p class="pull-right visible-xs">
-							<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-						</p>
+					<div class="col-xs-12">
 						<div class="row">
 {% if operRole == 1 %}
 							<div class="col-6 col-sm-6 col-lg-4">
@@ -72,7 +69,6 @@
 {% endif %}
 						</div>
 					</div>
-{% include 'sidebar.html' %}
 				</div>
 			</div>
 {% include 'footer.html' %}
