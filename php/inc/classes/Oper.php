@@ -12,8 +12,12 @@ class Oper {
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $results;
 	}
+
+	public function listFlags() {
+		$stmt = $this->db->query('SELECT * FROM  `flags` ORDER BY `id` ASC');
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $results;
+	}
 }
 
 ?>
-
-
