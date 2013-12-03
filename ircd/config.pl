@@ -6,20 +6,20 @@ my ($md5temp, $temphash);
 my ($md5final, $finalhash);
 
 ################################################################################
-# Edit the following fields with the required information:					   #
-#																			   #
+# Edit the following fields with the required information:                     #
+#                                                                              #
 # configurl = This is the URL you need to grab the config! use the example as  #
-# a template. The URL is built with the following information:				   #
-#																			   #
-# servername: This should be a server specified in the config admin.		   #
+# a template. The URL is built with the following information:                 #
+#                                                                              #
+# servername: This should be a server specified in the config admin.           #
 # bindip: This is the IP of the IRCd. It should match the one in the config    #
-# admin.																	   #
-# temppath: This is a temporary file. You will need to create it yourself 	   #
-# using touch																   #
+# admin.                                                                       #
+# temppath: This is a temporary file. You will need to create it yourself      #
+# using touch                                                                  #
 # finalpath: This should be the name of the config. Leave this alone unless    # 
-# you know what it does!													   #
+# you know what it does!                                                       #
 # rehashcmd: This will vary by IRCd. You will need to know where your IRCd PID #
-# file is. See examples below.												   #
+# file is. See examples below.                                                 #
 ################################################################################
 
 $config{'configurl'} = "http://server1:password\@www.mysite.net/volturnus/remote.php";
@@ -29,9 +29,9 @@ $config{'finalpath'} = "/home/username/Unreal3.2/config.conf";
 $config{'rehashcmd'} = "kill -HUP \`cat /home/username/Unreal3.2/ircd.pid\`";
 
 ################################################################################
-#																			   #
-#       DO NOT EDIT BELOW THIS BOX UNLESS YOU KNOW WHAT YOU'RE DOING!!!		   #
-#																			   #
+#                                                                              #
+#       DO NOT EDIT BELOW THIS BOX UNLESS YOU KNOW WHAT YOU'RE DOING!!!        #
+#                                                                              #
 ################################################################################
 
 # Create objects
