@@ -12,6 +12,12 @@ class Server {
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $results;
 	}
+
+	public function getServerByName($servername) {
+		$stmt = $this->db->prepare('SELECT * FROM `servers` WHERE `name` = :servername');
+		$stmt->execute(array('servername' => $servername));
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $result;
+	}
 }
 
-?>
