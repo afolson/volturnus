@@ -27,7 +27,7 @@ Don't see your IRCd? Feel free to open a feature request.
 
 Volturnus includes pre-filled configuration files to help you get set up quickly. These are NOT supported by your IRCd's development team.
 
-If you need help, please visit irc.zomgirc.net/#volturnus. Please note that we will not help you troubleshoot issues in code that you modify. However, if you're adding functionality to Volturnus we'd love to hear about what you're doing and why!
+If you need help, please visit irc.voltirc.net/#volturnus. Please note that we will not help you troubleshoot issues in code that you modify. However, if you're adding functionality to Volturnus we'd love to hear about what you're doing and why!
 
 ## Reporting Bugs or Suggesting Enhancements
 
