@@ -20,4 +20,4 @@ class Server {
 		return $result;
 	}
 }
-
+?>
