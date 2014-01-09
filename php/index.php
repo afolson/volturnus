@@ -1,8 +1,7 @@
 <?php
 /* Start the session! */
 session_start();
-
-
+include_once("auth.inc.php");
 
 if (!$page['error']) {
 	if (isset($_GET['p'])) {
