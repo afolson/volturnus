@@ -19,5 +19,10 @@ class Server {
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $result;
 	}
+
+	public function getServerByID($id) {
+		$stmt = $this->db->prepare('SELECT * FROM  `servers` WHERE `id` = ?');
+		$result = $stmt->execute(array($id));
+	}
 }
 ?>
