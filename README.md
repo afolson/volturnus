@@ -7,7 +7,7 @@ Volturnus is a web-based IRCd configuration management panel.
 * A system running PHP 5
 * A system running Perl OR an IRCd compiled with remote includes support
 * A system running Apache (note that Volturnus may work fine on other web servers, it's just not tested on them)
-* Access to a MySQL database/a user that can add, update, and delete
+* Access to a MySQL database/a user that can create, add, update, and delete.
 
 ## Installation
 

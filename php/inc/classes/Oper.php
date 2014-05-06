@@ -18,6 +18,17 @@ class Oper {
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $results;
 	}
+
+	public function getOperByName($oper) {
+		$stmt = $this->db->prepare('SELECT * FROM  `opers` WHERE `username` = ?');
+		$result = $stmt->execute(array($oper));
+	}
+
+		public function getOperByID($id) {
+		$stmt = $this->db->prepare('SELECT * FROM  `opers` WHERE `id` = ?');
+		$result = $stmt->execute(array($id));
+	}
+
 }
 
 ?>
