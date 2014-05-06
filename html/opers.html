@@ -1,0 +1,31 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+			<div class="container">
+				<div class="row row-offcanvas row-offcanvas-right">
+					<div class="col-xs-12">
+						<div class="row">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Username</th>
+										<th>Flags</th>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tbody>
+{% for oper in operList %}
+									<tr>
+										<td>{{ oper.id }}</td>
+										<td>{{ oper.username }}</td>
+										<td>{{ oper.flags }}</td>
+										<td><button type="button" class="btn btn-success">Edit</button> <button type="button" class="btn btn-danger">Delete</button></td>
+									</tr>
+{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+{% include 'footer.html' %}

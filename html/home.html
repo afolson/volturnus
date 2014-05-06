@@ -1,0 +1,74 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+			<div class="container">
+				<div class="row row-offcanvas row-offcanvas-right">
+					<div class="col-xs-12">
+						<div class="row">
+{% if operRole == 1 %}
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Opers</h2>
+								<p>Add, edit, and remove O:Lines from servers.</p>
+								<p><a class="btn btn-default" href="./?p=opers" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Servers</h2>
+								<p>Configure which servers are allowed to interact with Volturnus.</p>
+								<p><a class="btn btn-default" href="" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Channels</h2>
+								<p>Configure allow channel/deny channel blocks.</p>
+								<p><a class="btn btn-default" href="./?p=channels" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Bans</h2>
+								<p>Configure permanent version bans and Q/K/Z/n/q:Lines.</p>
+								<p><a class="btn btn-default" href="./?p=bans" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Exceptions</h2>
+								<p>Configure ban, TKL, and throttle exceptions.</p>
+								<p><a class="btn btn-default" href="./?p=exceptions" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>DCC</h2>
+								<p>Configure DCC allow and DCC deny blocks.</p>
+								<p><a class="btn btn-default" href="./?p=dcc" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>vHosts</h2>
+								<p>Configure vHosts. Note these are via IRCd and not services.</p>
+								<p><a class="btn btn-default" href="./?p=vhosts" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Bad Words</h2>
+								<p>Configure global badwords list for use with CHMODE +G.</p>
+								<p><a class="btn btn-default" href="./?p=badwords" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Spamfilters</h2>
+								<p>Configure permanent spamfilters. These will be global, not local.</p>
+								<p><a class="btn btn-default" href="./?p=spamfilters" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>CGI:IRC</h2>
+								<p>Configure CGI::IRC/webirc blocks.</p>
+								<p><a class="btn btn-default" href="./?p=cgiirc" role="button">Edit &raquo;</a></p>
+							</div>
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Other</h2>
+								<p>Configure other blocks such as link blocks, info blocks, etc.</p>
+								<p><a class="btn btn-default" href="./?p=other" role="button">Edit &raquo;</a></p>
+							</div>
+{% else %}
+							<div class="col-6 col-sm-6 col-lg-4">
+								<h2>Oper Block</h2>
+								<p>Modify your own password, password hashing method, and allowed hosts.</p>
+								<p><a class="btn btn-default" href="./?p=opers&action=edit&id={{ operID }}" role="button">Edit &raquo;</a></p>
+							</div>
+{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+{% include 'footer.html' %}
