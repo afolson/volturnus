@@ -1,0 +1,1 @@
+/Users/amanda/laravolt/app/views/bans/show.blade.php

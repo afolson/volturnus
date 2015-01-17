@@ -1,0 +1,1 @@
+/Users/amanda/laravolt/app/views/badwords/edit.blade.php
