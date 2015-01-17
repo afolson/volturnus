@@ -1,7 +1,0 @@
-[ ] Migrate templates to Twig
-[ ] Update DB schema to not use MyISAM
-[ ] Create installation script
-[ ] Allow users to select table prefixes
-[ ] Support for InspIRCd
-[ ] Support for Charybdis
-[ ] Support for Ratbox
