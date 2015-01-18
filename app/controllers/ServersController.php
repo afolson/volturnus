@@ -20,7 +20,7 @@ class ServersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('servers.create');
+		return View::make('servers.create', array('pageTitle' => 'Servers - Create'));
 	}
 
 	/**
@@ -34,12 +34,11 @@ class ServersController extends \BaseController {
 
 		if ($validator->fails())
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::route('servers.create')->withErrors($validator)->withInput();
+		} else {
+			Server::create($data);
+			return Redirect::route('servers.index');
 		}
-
-		Server::create($data);
-
-		return Redirect::route('servers.index');
 	}
 
 	/**
@@ -64,8 +63,7 @@ class ServersController extends \BaseController {
 	public function edit($id)
 	{
 		$server = Server::find($id);
-
-		return View::make('servers.edit', compact('server'));
+		return View::make('servers.edit', compact('server'), array('pageTitle' => 'Servers - Edit'));
 	}
 
 	/**
@@ -82,12 +80,11 @@ class ServersController extends \BaseController {
 
 		if ($validator->fails())
 		{
-			return Redirect::back()->withErrors($validator)->withInput();
+			return Redirect::route('servers.edit')->withErrors($validator)->withInput();
+		} else {
+			$server->update($data);
+			return Redirect::route('servers.index');
 		}
-
-		$server->update($data);
-
-		return Redirect::route('servers.index');
 	}
 
 	/**
@@ -99,8 +96,6 @@ class ServersController extends \BaseController {
 	public function destroy($id)
 	{
 		Server::destroy($id);
-
-		return Redirect::route('servers.index');
+		return Redirect::route('servers.index')->with('message', 'Ban has been deleted.');
 	}
-
 }
