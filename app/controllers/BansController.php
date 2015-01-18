@@ -31,7 +31,6 @@ class BansController extends \BaseController {
 	public function store()
 	{
 		$validator = Validator::make($data = Input::all(), Ban::$rules);
-
 		if ($validator->fails())
 		{
 			return Redirect::route('bans.create')->withErrors($validator)->withInput();
@@ -50,7 +49,6 @@ class BansController extends \BaseController {
 	public function show($id)
 	{
 		$ban = Ban::findOrFail($id);
-
 		return View::make('bans.show', compact('ban'));
 	}
 
@@ -94,7 +92,6 @@ class BansController extends \BaseController {
 	public function destroy($id)
 	{
 		Ban::destroy($id);
-		//return Redirect::route('bans.index');
 		return Redirect::route('bans.index')->with('message', 'Ban has been deleted.');
 	}
 
