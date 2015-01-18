@@ -70,7 +70,6 @@ class CreateBansTable extends Migration {
 		);
 	}
 
-
 	/**
 	 * Reverse the migrations.
 	 *
